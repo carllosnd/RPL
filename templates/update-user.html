@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% if messages %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <form action="{% url 'postupdateuser' %}" method="POST">
+        {% csrf_token %}
+        <h1>FORM UPDATE USER</h1>
+        <p>USERID :</p>
+        <input style="background-color: aqua;" type="text" name="userid" id="userid" maxlength="4" value="{{ data_user.userid }}" readonly required>
+        <p>USERNAME :</p>
+        <input type="text" name="username" id="username" maxlength="10" value="{{ data_user.username }}" required>
+        <p>PASSWORD :</p>
+        <input type="password" name="password" id="password" maxlength="10" value="{{ data_user.password }}" required>
+        <p>MASUKKAN PASSWORD SEKALI LAGI :</p>
+        <input type="password" name="password2" id="password2" maxlength="10" value="{{ data_user.password }}" required>
+        <br>
+        <br>
+        <button type="submit">SUBMIT</button>
+        <a href="{% url 'masteruser' %}">KEMBALI</a>
+    </form>
+</body>
+
+</html>

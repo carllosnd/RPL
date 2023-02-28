@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <h1>DAFTAR USER</h1>
+    <a href="{% url 'tambah_user' %}">TAMBAH USER</a>
+    <table>
+        <thead>
+            <tr>
+                <th>USER ID</th>
+                <th>USERNAME</th>
+                <th>AKSI</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in data_user %}
+            <tr>
+                <td>{{ user.userid }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                    <a href="{% url 'updateuser' user.userid %}">UPDATE</a>
+                    <a onclick="return confirm('Apakah anda yakin ingin menghapus user dengan userid = {{user.userid}}')" href="{% url 'deleteuser' user.userid %}">DELETE</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
